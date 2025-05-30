@@ -190,7 +190,7 @@
 			u-boot,dm-pre-reloc;
 		};
 
-		gmac0: ethernet@ffe7070000 {
+		/*gmac0: ethernet@ffe7070000 {
 			compatible = "snps,dwmac";
 			reg = <0xff 0xe7070000 0x0 0x2000>;
 			clocks = <&dummy_apb>;
@@ -226,7 +226,7 @@
 			phy-mode = "rgmii-id";
 			phy-handle = <&phy_88E1111_b>;
 			status = "okay";
-		};
+		};*/
 
 		emmc: sdhci@ffe7080000 {
 			compatible = "snps,dwcmshc-sdhci";
