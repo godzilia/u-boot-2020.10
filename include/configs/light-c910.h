@@ -696,6 +696,7 @@
 	"mmc_select=if test -e ${boottype} ${default_mmcdev}:${mmcbootpart} ${boot_conf_file}; then mmcdev=1; else mmcdev=0; fi;\0" \
 	"boot_conf_file=/extlinux/extlinux.conf\0" \
 	"fdt_file=th1520-lpi4a-product.dtb\0" \
+	"fdtfile=thead/th1520-lpi4a-product.dtb\0" \
 	"uuid_rootfs=80a5a8e9-c744-491a-93c1-4f4194fd690b\0" \
 	"partitions=name=table,size=2031KB;name=boot,size=500MiB,type=boot;name=swap,size=1536MiB,type=boot;name=fastresume,size=512MiB,type=boot;name=root,size=-,type=linux,uuid=${uuid_rootfs}\0" \
 	"finduuid=part uuid mmc ${mmcdev}:${mmcpart} uuid\0" \
@@ -705,6 +706,7 @@
 	"load_aon=ext4load mmc ${mmcdev}:${mmcbootpart} $fwaddr light_aon_fpga.bin;cp.b $fwaddr $aon_ram_addr $filesize;bootaon\0"\
 	"load_c906_audio=ext4load mmc ${mmcdev}:${mmcbootpart} $fwaddr light_c906_audio.bin;cp.b $fwaddr $audio_ram_addr $filesize\0"\
 	"load_str=ext4load mmc ${mmcdev}:${mmcbootpart} $fwaddr str.bin;cp.b $fwaddr $str_ram_addr $filesize\0"\
+	"load_opensbi=load ${boottype} ${mmcdev}:${mmcbootpart} $opensbi_addr fw_dynamic.bin\0" \
 	"bootcmd_load=run mmc_select; run load_aon; run load_c906_audio; run load_str; run load_opensbi\0" \
 	"bootcmd=run bootcmd_load; chk_hibernate; fixup_memory_region; bootslave; run finduuid; run set_bootargs; sysboot ${boottype} ${mmcdev}:${mmcbootpart} any $boot_conf_addr_r $boot_conf_file;\0" \
         "\0"
